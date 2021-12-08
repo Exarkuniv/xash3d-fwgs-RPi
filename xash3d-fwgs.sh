@@ -24,6 +24,8 @@ function sources_xash3d-fwgs() {
     gitPullOrClone "$md_build/hlsdk" https://github.com/FWGS/hlsdk-xash3d.git
     gitPullOrClone "$md_build/bshiftsdk" https://github.com/FWGS/hlsdk-xash3d.git "bshift"
     gitPullOrClone "$md_build/opforsdk" https://github.com/FWGS/hlsdk-xash3d.git "opfor"
+    wget https://github.com/Exarkuniv/xash3d-fwgs-RPi/blob/Master/config.cfg
+    wget https://github.com/Exarkuniv/xash3d-fwgs-RPi/blob/Master/video.cfg
 }
 
 function build_xash3d-fwgs() {
@@ -78,7 +80,10 @@ function configure_xash3d-fwgs() {
     cp "$md_build/opforsdk/build/dlls/opfor_armv8_32hf.so" "$romdir/ports/$md_id/gearbox/dlls/hl.so"
     download "https://github.com/FWGS/xash-extras/releases/download/v0.19.2/extras.pak" "$romdir/ports/$md_id/valve"
 	chown -R $user:$user "$romdir/ports/$md_id/"
-
+	
+ 	mv "/home/pi/RetroPie-Setup/tmp/build/xash3d-fwgs/config.cfg" "$romdir/ports/$md_id/valve"
+	mv "/home/pi/RetroPie-Setup/tmp/build/xash3d-fwgs/video.cfg" "$romdir/ports/$md_id/valve"
+	
     addPort "$md_id" "xash3d-fwgs" "Half-Life" "pushd $romdir/ports/$md_id/; LD_LIBRARY_PATH=$md_inst $md_inst/xash3d -game %ROM% -clientlib cl_dlls/client.so -dll dlls/hl.so; popd" "valve"
 	addPort "$md_id" "xash3d-fwgs" "Half-Life - Blue Shift" "pushd $romdir/ports/$md_id/; LD_LIBRARY_PATH=$md_inst $md_inst/xash3d -game %ROM% -clientlib cl_dlls/client.so -dll dlls/hl.so; popd" "bshift"
 	addPort "$md_id" "xash3d-fwgs" "Half-Life - Opposing Force" "pushd $romdir/ports/$md_id/; LD_LIBRARY_PATH=$md_inst $md_inst/xash3d -game %ROM% -clientlib cl_dlls/client.so -dll dlls/hl.so; popd" "gearbox"
