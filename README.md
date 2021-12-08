@@ -7,5 +7,5 @@ with the help from Cesarpuig over from the RetroPie fourms here is a updated ins
 
 
 ```
-wget https://raw.githubusercontent.com/Exarkuniv/Nblood-RPI/Master/nblood.sh -P $HOME/RetroPie-Setup/scriptmodules/ports/
+wget https://raw.githubusercontent.com/Exarkuniv/xash3d-fwgs-RPi/Master/xash3d-fwgs.sh -P $HOME/RetroPie-Setup/scriptmodules/ports/
 ```
