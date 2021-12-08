@@ -79,10 +79,13 @@ function configure_xash3d-fwgs() {
     cp "$md_build/opforsdk/build/cl_dll/client_armv8_32hf.so" "$romdir/ports/$md_id/gearbox/cl_dlls/client.so"
     cp "$md_build/opforsdk/build/dlls/opfor_armv8_32hf.so" "$romdir/ports/$md_id/gearbox/dlls/hl.so"
     download "https://github.com/FWGS/xash-extras/releases/download/v0.19.2/extras.pak" "$romdir/ports/$md_id/valve"
-	chown -R $user:$user "$romdir/ports/$md_id/"
 	
  	mv "/home/pi/RetroPie-Setup/tmp/build/xash3d-fwgs/config.cfg" "$romdir/ports/$md_id/valve"
 	mv "/home/pi/RetroPie-Setup/tmp/build/xash3d-fwgs/video.cfg" "$romdir/ports/$md_id/valve"
+	
+	chmod 755 config.cfg
+	chmod 755 video.cfg
+	chown -R $user:$user "$romdir/ports/$md_id/"
 	
     addPort "$md_id" "xash3d-fwgs" "Half-Life" "pushd $romdir/ports/$md_id/; LD_LIBRARY_PATH=$md_inst $md_inst/xash3d -game %ROM% -clientlib cl_dlls/client.so -dll dlls/hl.so; popd" "valve"
 	addPort "$md_id" "xash3d-fwgs" "Half-Life - Blue Shift" "pushd $romdir/ports/$md_id/; LD_LIBRARY_PATH=$md_inst $md_inst/xash3d -game %ROM% -clientlib cl_dlls/client.so -dll dlls/hl.so; popd" "bshift"
